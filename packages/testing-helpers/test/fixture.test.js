@@ -8,8 +8,8 @@ import { fixture, fixtureSync } from '../src/fixture.js';
 import { html, unsafeStatic } from '../src/lit-html.js';
 import { NODE_TYPES } from '../src/lib.js';
 
-function createWrapper() {
-  return document.createElement('my-wrapper');
+function createParent() {
+  return document.createElement('my-parent');
 }
 
 describe('fixtureSync & fixture', () => {
@@ -21,16 +21,16 @@ describe('fixtureSync & fixture', () => {
     expect(elAsync.getAttribute('foo')).to.equal('bar');
   });
 
-  it('supports strings with wrapper', async () => {
+  it('supports strings with custom parent', async () => {
     const elSync = fixtureSync(`<div foo="${'bar'}"></div>`, {
-      wrapper: createWrapper(),
+      parent: createParent(),
     });
-    expect(elSync.parentElement.tagName).to.equal('MY-WRAPPER');
+    expect(elSync.parentElement.tagName).to.equal('MY-PARENT');
 
     const elAsync = await fixture(`<div foo="${'bar'}"></div>`, {
-      wrapper: createWrapper(),
+      parent: createParent(),
     });
-    expect(elAsync.parentElement.tagName).to.equal('MY-WRAPPER');
+    expect(elAsync.parentElement.tagName).to.equal('MY-PARENT');
   });
 
   it('supports lit-html TemplateResult with properties', async () => {
@@ -82,26 +82,26 @@ describe('fixtureSync & fixture', () => {
     testElement(elementAsync);
   });
 
-  it('supports lit-html TemplateResult with wrapper', async () => {
+  it('supports lit-html TemplateResult with custom parent', async () => {
     const elSync = fixtureSync(
       html`
         <div foo="${'bar'}"></div>
       `,
       {
-        wrapper: createWrapper(),
+        parent: createParent(),
       },
     );
-    expect(elSync.parentElement.tagName).to.equal('MY-WRAPPER');
+    expect(elSync.parentElement.tagName).to.equal('MY-PARENT');
 
     const elAsync = await fixture(
       html`
         <div foo="${'bar'}"></div>
       `,
       {
-        wrapper: createWrapper(),
+        parent: createParent(),
       },
     );
-    expect(elAsync.parentElement.tagName).to.equal('MY-WRAPPER');
+    expect(elAsync.parentElement.tagName).to.equal('MY-PARENT');
   });
 
   describe('Node', () => {

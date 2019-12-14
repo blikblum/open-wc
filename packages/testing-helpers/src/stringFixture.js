@@ -11,7 +11,7 @@ import { elementUpdated } from './elementUpdated.js';
  * @returns {T}
  */
 export function stringFixtureSync(template, options = {}) {
-  const wrapper = fixtureWrapper(options.wrapper);
+  const wrapper = fixtureWrapper(options.parent);
   wrapper.innerHTML = template;
   return /** @type {T} */ (wrapper.children[0]);
 }

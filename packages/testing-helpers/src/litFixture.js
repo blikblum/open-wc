@@ -34,7 +34,7 @@ const isUsefulNode = ({ nodeType, textContent }) => {
  * @returns {T}
  */
 export function litFixtureSync(template, options = {}) {
-  const wrapper = fixtureWrapper(options.wrapper);
+  const wrapper = fixtureWrapper(options.parent);
   render(template, wrapper);
   if (template instanceof TemplateResult) {
     return /** @type {T} */ (wrapper.firstElementChild);
