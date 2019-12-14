@@ -12,12 +12,12 @@ import { isValidRenderArg } from './lib.js';
  * @param {import('./litFixture').LitHTMLRenderable} template Either a string or lit-html TemplateResult
  * @returns {T} First child of the rendered DOM
  */
-export function fixtureSync(template) {
+export function fixtureSync(template, options) {
   if (typeof template === 'string') {
-    return stringFixtureSync(template);
+    return stringFixtureSync(template, options);
   }
   if (isValidRenderArg(template)) {
-    return litFixtureSync(template);
+    return litFixtureSync(template, options);
   }
   throw new Error(
     'Invalid template provided - string, number, boolean, Node, TemplateResult, or array or iterable thereof are supported',
@@ -44,12 +44,12 @@ export function fixtureSync(template) {
  * @param {import('./litFixture').LitHTMLRenderable} template Either a string or lit-html TemplateResult
  * @returns {Promise<T>} A Promise that will resolve to the first child of the rendered DOM
  */
-export async function fixture(template) {
+export async function fixture(template, options) {
   if (typeof template === 'string') {
-    return stringFixture(template);
+    return stringFixture(template, options);
   }
   if (isValidRenderArg(template)) {
-    return litFixture(template);
+    return litFixture(template, options);
   }
   throw new Error('Invalid template provided - string or lit-html TemplateResult is supported');
 }

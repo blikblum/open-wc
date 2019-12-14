@@ -8,6 +8,10 @@ import { fixture, fixtureSync } from '../src/fixture.js';
 import { html, unsafeStatic } from '../src/lit-html.js';
 import { NODE_TYPES } from '../src/lib.js';
 
+function createWrapper() {
+  return document.createElement('my-wrapper');
+}
+
 describe('fixtureSync & fixture', () => {
   it('supports strings', async () => {
     const elSync = fixtureSync(`<div foo="${'bar'}"></div>`);
@@ -15,6 +19,18 @@ describe('fixtureSync & fixture', () => {
 
     const elAsync = await fixture(`<div foo="${'bar'}"></div>`);
     expect(elAsync.getAttribute('foo')).to.equal('bar');
+  });
+
+  it('supports strings with wrapper', async () => {
+    const elSync = fixtureSync(`<div foo="${'bar'}"></div>`, {
+      wrapper: createWrapper(),
+    });
+    expect(elSync.parentElement.tagName).to.equal('MY-WRAPPER');
+
+    const elAsync = await fixture(`<div foo="${'bar'}"></div>`, {
+      wrapper: createWrapper(),
+    });
+    expect(elAsync.parentElement.tagName).to.equal('MY-WRAPPER');
   });
 
   it('supports lit-html TemplateResult with properties', async () => {
@@ -64,6 +80,28 @@ describe('fixtureSync & fixture', () => {
     `);
     // @ts-ignore
     testElement(elementAsync);
+  });
+
+  it('supports lit-html TemplateResult with wrapper', async () => {
+    const elSync = fixtureSync(
+      html`
+        <div foo="${'bar'}"></div>
+      `,
+      {
+        wrapper: createWrapper(),
+      },
+    );
+    expect(elSync.parentElement.tagName).to.equal('MY-WRAPPER');
+
+    const elAsync = await fixture(
+      html`
+        <div foo="${'bar'}"></div>
+      `,
+      {
+        wrapper: createWrapper(),
+      },
+    );
+    expect(elAsync.parentElement.tagName).to.equal('MY-WRAPPER');
   });
 
   describe('Node', () => {

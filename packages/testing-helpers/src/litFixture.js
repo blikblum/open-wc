@@ -32,8 +32,8 @@ const isUsefulNode = ({ nodeType, textContent }) => {
  * @param {LitHTMLRenderable} template
  * @returns {T}
  */
-export function litFixtureSync(template) {
-  const wrapper = fixtureWrapper();
+export function litFixtureSync(template, options = {}) {
+  const wrapper = fixtureWrapper(options.wrapper);
   render(template, wrapper);
   if (template instanceof TemplateResult) {
     return /** @type {T} */ (wrapper.firstElementChild);
@@ -50,8 +50,8 @@ export function litFixtureSync(template) {
  * @param {LitHTMLRenderable} template
  * @returns {Promise<T>}
  */
-export async function litFixture(template) {
-  const el = litFixtureSync(template);
+export async function litFixture(template, options) {
+  const el = litFixtureSync(template, options);
   await elementUpdated(el);
   // @ts-ignore
   return el;

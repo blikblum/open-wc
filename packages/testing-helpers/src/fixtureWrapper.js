@@ -7,8 +7,7 @@ export const cachedWrappers = [];
  *
  * @returns {Element}
  */
-export function fixtureWrapper() {
-  const wrapper = document.createElement('div');
+export function fixtureWrapper(wrapper = document.createElement('div')) {
   document.body.appendChild(wrapper);
   cachedWrappers.push(wrapper);
   return wrapper;

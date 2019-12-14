@@ -9,8 +9,8 @@ import { elementUpdated } from './elementUpdated.js';
  * @param {string} template
  * @returns {T}
  */
-export function stringFixtureSync(template) {
-  const wrapper = fixtureWrapper();
+export function stringFixtureSync(template, options = {}) {
+  const wrapper = fixtureWrapper(options.wrapper);
   wrapper.innerHTML = template;
   return /** @type {T} */ (wrapper.children[0]);
 }
@@ -23,8 +23,8 @@ export function stringFixtureSync(template) {
  * @param {string} template
  * @returns {Promise<T>}
  */
-export async function stringFixture(template) {
-  const el = stringFixtureSync(template);
+export async function stringFixture(template, options) {
+  const el = stringFixtureSync(template, options);
   await elementUpdated(el);
   // @ts-ignore
   return el;
