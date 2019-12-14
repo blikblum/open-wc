@@ -7,6 +7,7 @@ import { elementUpdated } from './elementUpdated.js';
  *
  * @template {Element} T - Is an element or a node
  * @param {string} template
+ * @param {object} [options]
  * @returns {T}
  */
 export function stringFixtureSync(template, options = {}) {
@@ -21,6 +22,7 @@ export function stringFixtureSync(template, options = {}) {
  *
  * @template {Element} T - Is an element or a node
  * @param {string} template
+ * @param {object} [options]
  * @returns {Promise<T>}
  */
 export async function stringFixture(template, options) {

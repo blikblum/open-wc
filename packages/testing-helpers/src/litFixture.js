@@ -30,6 +30,7 @@ const isUsefulNode = ({ nodeType, textContent }) => {
  *
  * @template {Element} T - Is an element or a node
  * @param {LitHTMLRenderable} template
+ * @param {object} [options]
  * @returns {T}
  */
 export function litFixtureSync(template, options = {}) {
@@ -48,6 +49,7 @@ export function litFixtureSync(template, options = {}) {
  *
  * @template {Element} T - Is an element or a node
  * @param {LitHTMLRenderable} template
+ * @param {object} [options]
  * @returns {Promise<T>}
  */
 export async function litFixture(template, options) {

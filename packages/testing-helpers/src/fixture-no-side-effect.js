@@ -10,6 +10,7 @@ import { isValidRenderArg } from './lib.js';
  *
  * @template {Element} T
  * @param {import('./litFixture').LitHTMLRenderable} template Either a string or lit-html TemplateResult
+ * @param {object} [options]
  * @returns {T} First child of the rendered DOM
  */
 export function fixtureSync(template, options) {
@@ -42,6 +43,7 @@ export function fixtureSync(template, options) {
  *
  * @template {Element} T
  * @param {import('./litFixture').LitHTMLRenderable} template Either a string or lit-html TemplateResult
+ * @param {object} [options]
  * @returns {Promise<T>} A Promise that will resolve to the first child of the rendered DOM
  */
 export async function fixture(template, options) {
