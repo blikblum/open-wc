@@ -1,6 +1,6 @@
 {
   "name": "wc-testing",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "publishConfig": {
     "access": "public"
   },
@@ -8,14 +8,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/open-wc/open-wc.git",
+    "url": "https://github.com/blikblum/open-wc.git",
     "directory": "packages/testing-helpers"
   },
   "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "scripts": {
-    "prepublishOnly": "../../scripts/insert-header.js"
-  },
+  "homepage": "https://github.com/blikblum/open-wc/",
   "files": [
     "*.d.ts",
     "*.js",
